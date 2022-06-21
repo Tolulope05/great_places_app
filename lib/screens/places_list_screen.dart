@@ -22,13 +22,13 @@ class PlacesListScreen extends StatelessWidget {
         ],
       ),
       body: Consumer<GreatPlaces>(
-        child: Container(
+        child: SizedBox(
+          // height: MediaQuery.of(context).size.height * 0.7,
           width: double.infinity,
-          alignment: Alignment.center,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
                   'Got no places yet, you can start adding some!',
