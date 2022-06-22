@@ -26,7 +26,7 @@ class PlacesListScreen extends StatelessWidget {
             .fetchAndSetPlaces(),
         builder: (ctx, snapshot) =>
             snapshot.connectionState == ConnectionState.waiting
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(),
                   )
                 : Consumer<GreatPlaces>(

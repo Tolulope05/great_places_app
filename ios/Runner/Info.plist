@@ -28,6 +28,8 @@
 	<string>This app uses the camera, photo library, and location services to show you the places you've been to.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses the camera, photo library, and location services to show you the places you've been to.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses the camera, photo library, and location services to show you the places you've been to.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
