@@ -28,7 +28,12 @@ class _AddPlacescreenState extends State<AddPlacescreen> {
     if (_titleController.text.isEmpty || _pickedImage == null) {
       showDialog(
           context: context,
-          builder: (context) => Text('Sorry cant save Image'));
+          builder: (context) => const Scaffold(
+                  body: Center(
+                      child: Text(
+                'Sorry cant save Image',
+                style: TextStyle(fontSize: 20),
+              )))); //Needs restructuring
       return;
     }
     Provider.of<GreatPlaces>(context, listen: false).addPlace(
@@ -42,7 +47,7 @@ class _AddPlacescreenState extends State<AddPlacescreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add a new Place'),
+        title: const Text('Add a New Place'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
