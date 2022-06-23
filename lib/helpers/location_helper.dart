@@ -1,3 +1,4 @@
+// ignore: constant_identifier_names
 const GOOGLE_API_KEY = 'AIzaSyBkSmjuGe2olJxTShFuQkPR-xd72fkGrns';
 
 class LocationHelper {

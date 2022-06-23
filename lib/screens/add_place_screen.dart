@@ -66,7 +66,7 @@ class _AddPlacescreenState extends State<AddPlacescreen> {
                   const SizedBox(height: 10),
                   ImageInput(_selectImage),
                   const SizedBox(height: 10),
-                  LocationInput(),
+                  const LocationInput(),
                 ],
               ),
             ),
