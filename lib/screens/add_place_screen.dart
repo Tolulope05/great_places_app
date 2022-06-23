@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../widgets/image_input.dart';
 import '../widgets/location_input.dart';
 import '../providers/great_places.dart';
+import '../models/place.dart';
 
 class AddPlacescreen extends StatefulWidget {
   static const routeName = '/add-place';
@@ -20,26 +21,24 @@ class _AddPlacescreenState extends State<AddPlacescreen> {
   final _titleController = TextEditingController();
 
   File? _pickedImage;
+  PlaceLocation? _pickedLocation;
 
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
   }
 
+  void _selectPlace(double lat, double long) {
+    _pickedLocation = PlaceLocation(latitude: lat, longitude: long);
+  }
+
   void _savePlace() {
     if (_titleController.text.isEmpty || _pickedImage == null) {
-      showDialog(
-          context: context,
-          builder: (context) => const Scaffold(
-                  body: Center(
-                      child: Text(
-                'Sorry cant save Image',
-                style: TextStyle(fontSize: 20),
-              )))); //Needs restructuring
       return;
     }
     Provider.of<GreatPlaces>(context, listen: false).addPlace(
       _titleController.text,
       _pickedImage as File,
+      _pickedLocation!,
     );
     Navigator.of(context).pop();
   }
@@ -66,7 +65,7 @@ class _AddPlacescreenState extends State<AddPlacescreen> {
                   const SizedBox(height: 10),
                   ImageInput(_selectImage),
                   const SizedBox(height: 10),
-                  const LocationInput(),
+                  LocationInput(_selectPlace),
                 ],
               ),
             ),

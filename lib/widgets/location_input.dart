@@ -6,7 +6,9 @@ import '../helpers/location_helper.dart';
 import '../screens/map_screen.dart';
 
 class LocationInput extends StatefulWidget {
-  const LocationInput({Key? key}) : super(key: key);
+  final Function? onselectPlace;
+
+  const LocationInput(this.onselectPlace, {Key? key}) : super(key: key);
 
   @override
   State<LocationInput> createState() => _LocationInputState();
@@ -17,15 +19,17 @@ class _LocationInputState extends State<LocationInput> {
 
   Future<void> _getCurrentUserLocation() async {
     final locData = await Location().getLocation();
-    // print(locData.latitude);
-    // print(locData.longitude);
+    print(locData.latitude);
+    print(locData.longitude);
     final staticMapImageUrl = LocationHelper.generateLocationPreviewImage(
       latitude: locData.latitude,
       longitude: locData.longitude,
     );
+
     setState(() {
       _imagePreviewUrl = staticMapImageUrl;
     });
+    widget.onselectPlace!(locData.latitude, locData.longitude);
   }
 
   Future<void> _selectOnMap() async {
@@ -40,32 +44,36 @@ class _LocationInputState extends State<LocationInput> {
     }
     // print(selectedLocation.latitude);
     // print(selectedLocation.longitude);
+    widget.onselectPlace!(
+      selectedLocation.latitude,
+      selectedLocation.longitude,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          alignment: Alignment.center,
-          height: 170,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              border: Border.all(
-            width: 1,
-            color: Colors.grey,
-          )),
-          child: _imagePreviewUrl == null
-              ? const Text(
-                  'No Location Chosen',
-                  textAlign: TextAlign.center,
-                )
-              : Image.network(
-                  _imagePreviewUrl!,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                ),
-        ),
+        // Container(
+        //   alignment: Alignment.center,
+        //   height: 170,
+        //   width: double.infinity,
+        //   decoration: BoxDecoration(
+        //       border: Border.all(
+        //     width: 1,
+        //     color: Colors.grey,
+        //   )),
+        //   child: _imagePreviewUrl == null
+        //       ? const Text(
+        //           'No Location Chosen',
+        //           textAlign: TextAlign.center,
+        //         )
+        //       : Image.network(
+        //           _imagePreviewUrl!,
+        //           fit: BoxFit.cover,
+        //           width: double.infinity,
+        //         ),
+        // ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
