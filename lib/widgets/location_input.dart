@@ -19,8 +19,8 @@ class _LocationInputState extends State<LocationInput> {
 
   Future<void> _getCurrentUserLocation() async {
     final locData = await Location().getLocation();
-    print(locData.latitude);
-    print(locData.longitude);
+    // print(locData.latitude);
+    // print(locData.longitude);
     final staticMapImageUrl = LocationHelper.generateLocationPreviewImage(
       latitude: locData.latitude,
       longitude: locData.longitude,
